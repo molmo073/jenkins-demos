@@ -18,18 +18,20 @@ pipeline{
         } 
         stage('Build'){
             steps{
-                dir('./02-pipelines/solution') 
-                echo "Build verison ${VERSION} witch suffix: ${VERSION_RC}"
-                sh '''
-                    npm install
-                    npm run build
-                '''
+                dir('./02-pipelines/solution'){ 
+                    echo "Build verison ${VERSION} witch suffix: ${VERSION_RC}"
+                    sh '''
+                        npm install
+                        npm run build
+                    '''
+                }
             }
         }
         stage('Unit test'){
             steps{
-                dir('./02-pipelines/solution')
-                sh 'npm test'
+                dir('./02-pipelines/solution'){                
+                    sh 'npm test'
+                }
             } 
             
         }
