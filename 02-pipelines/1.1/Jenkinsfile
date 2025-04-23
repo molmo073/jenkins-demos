@@ -21,7 +21,7 @@ pipeline{
         } 
         stage('Build'){
             steps{
-                dir(../solutions) 
+                dir('../solution') 
                 echo "Build verison ${VERSION} witch suffix: ${VERSION_RC}"
                 sh '''
                     npm install
@@ -31,7 +31,7 @@ pipeline{
         }
         stage('Unit test'){
             steps{
-                dir(../solutions) 
+                dir('../solution') 
                 sh npm test
                 echo "====++++executing A++++===="
             } 
