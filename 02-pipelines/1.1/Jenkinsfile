@@ -32,7 +32,7 @@ pipeline{
         stage('Unit test'){
             steps{
                 dir('../solution') 
-                sh npm test
+                sh 'npm test'
                 echo "====++++executing A++++===="
             } 
             
