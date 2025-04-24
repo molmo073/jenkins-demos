@@ -28,7 +28,7 @@ pipeline{
                         echo -n "${VERSION_RC}"
                     fi
                     ''' 
-                returnStdout: true)
+            returnStdout: true)
             }
             steps{
                 dir('./02-pipelines/solution'){ 
