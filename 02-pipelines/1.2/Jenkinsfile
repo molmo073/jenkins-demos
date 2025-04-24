@@ -1,0 +1,45 @@
+pipeline{
+    agent any
+    parameters {
+        parametroboolenano(name: 'RC', defaultValue: false, description: 'Is this release candidate?')
+    }
+    environment{
+        VERSION = sh([script: 'cd 02-pipelines/solution && npx -c \'echo $npm_package_version\'', returnStdout: true ]).trim()
+        VERSION_RC = 'rc.2'
+    }
+    stages{
+        stage('Audit tools'){
+            steps{
+                sh '''
+                    git version
+                    docker version
+                    node --version
+                    npm version
+                '''
+            }
+        } 
+        stage('Build'){
+            environment {
+                VERSION_SUFFIX = sh(script:'if [ "${RC}" = "true" ] ; then echo -n "${VERSION_RC}+ci.${BUILD_NUMBER}"; else echo -n "${VERSION_RC}"; fi', 
+                returnStdout: true
+            }
+            steps{
+                dir('./02-pipelines/solution'){ 
+                    echo "Build verison ${VERSION} witch suffix: ${VERSION_SUFFIX}"
+                    sh '''
+                        npm install
+                        npm run build
+                    '''
+                }
+            }
+        }
+        stage('Unit test'){
+            steps{
+                dir('./02-pipelines/solution'){                
+                    sh 'npm test'
+                }
+            } 
+            
+        }
+    }
+}
