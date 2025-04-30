@@ -1,7 +1,8 @@
 library(identifier: 'jenkins-demos-library@main',
         retriever: modernSCM([
-        $class: 'GitSCMSource', 
-        remote: 'https://github.com/molmo073/jenkins-demos-library.git'
+            $class: 'GitSCMSource', 
+            remote: 'https://github.com/molmo073/jenkins-demos-library.git'
+            credentialsId: 'e19dcc0f-19f9-4189-a6c0-10fff660b3cb'
             ])
 )
 
