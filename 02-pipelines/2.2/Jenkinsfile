@@ -19,7 +19,7 @@ pipeline{
     stages{
         stage('Audit tools'){
             steps{
-                auditTools(message: "This is demo 2.2")
+                auditTools2(message: "This is demo 2.2")
             }
         } 
         stage('Build'){
