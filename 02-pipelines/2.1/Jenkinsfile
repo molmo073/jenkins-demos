@@ -60,12 +60,3 @@ String getVersionSuffix() {
         return env.VERSION_RC
        }
 }
-
-void auditTools() {
-    sh '''
-        git version
-        docker version
-        node --version
-        npm version
-    '''
-}
