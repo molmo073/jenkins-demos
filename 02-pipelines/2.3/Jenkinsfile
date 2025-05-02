@@ -13,7 +13,10 @@ pipeline{
         booleanParam(name: 'RC', defaultValue: false, description: 'Is this release candidate?')
     }
     environment{
-        VERSION = sh([script: 'cd 02-pipelines/solution && npx -c \'echo $npm_package_version\'', returnStdout: true ]).trim()
+        VERSION = sh(
+            script: 'cd 02-pipelines/solution && npx -c \'echo $npm_package_version\'',
+            returnStdout: true
+            ).trim()
         VERSION_RC = 'rc.2'
     }
     stages{
