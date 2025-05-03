@@ -15,23 +15,23 @@ pipeline{
                 sh 'ls -l "$WORKSPACE"'
             }
         }
-    }
-    stage("construir"){
-        steps{
-            dir ('./03-docker/solution'){
-                sh '''
-                    npm instal
-                    npm run build 
-                '''
-            }
-        }    
-    }
-    stage('Unit test'){
+        stage("construir"){
+            steps{
+                dir ('./03-docker/solution'){
+                    sh '''
+                        npm instal
+                        npm run build 
+                    '''
+                }
+            }    
+        }
+        stage('Unit test'){
             steps{
                 dir('./03-docker/solution'){                
                     sh 'npm test'
                 }
             } 
             
+        }
     }
 }
