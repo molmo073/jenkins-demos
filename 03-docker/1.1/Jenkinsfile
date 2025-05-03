@@ -1,7 +1,7 @@
 pipeline{
     agent {
         docker {
-            image: 'node:alpine3.12'
+            image 'node:alpine3.12'
         }
     }
     stages{
@@ -12,14 +12,14 @@ pipeline{
                   npm version
                 '''
                 sh 'printenv'
-                sh 'ls -l "$WORKSPACE"'
+                sh  "ls -l $WORKSPACE"
             }
         }
         stage("construir"){
             steps{
                 dir ('./03-docker/solution'){
                     sh '''
-                        npm instal
+                        npm install
                         npm run build 
                     '''
                 }
