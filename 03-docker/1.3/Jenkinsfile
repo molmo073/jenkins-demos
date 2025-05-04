@@ -9,7 +9,7 @@ pipeline {
                     sh 'pwd' // Imprime el directorio de trabajo
                      sh 'ls -la ..' // Para ver el contenido del directorio padre (03-docker)
                      sh 'ls -la'    // Para ver el contenido del directorio actual (03-docker-1.3)
-                    image = docker.build("molmo/jenkins-pipeline-demos:0.0.1", "--pull -f ../solution/Dockerfile ../solution")
+                    image = docker.build("molmo/jenkins-pipeline-demos:0.0.1", "--pull -f ../03-docker/solution/Dockerfile ../03-docker/solution")
                 }
             }          
 
