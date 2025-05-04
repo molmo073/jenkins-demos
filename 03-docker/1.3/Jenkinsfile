@@ -1,0 +1,24 @@
+def image
+
+pipeline {
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                script {
+                    image = docker.build("molmo/jenkins-pipeline-demos:0.0.1", "--pull -f ../solution/Dockerfile ../solution")
+                }
+            }          
+
+        }
+        stage('Push') {
+            steps {
+                script {
+                    withDockerRegistry([credentialsId: "docker-hub", url: ""]) {
+                        image.push()
+                    }
+                }
+            }
+        }
+    }
+}

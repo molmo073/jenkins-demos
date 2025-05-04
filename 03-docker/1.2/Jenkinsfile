@@ -1,0 +1,37 @@
+pipeline{
+    agent {
+        docker {
+            dockerfile{
+                dir '03-docker/solution'
+            }
+        }
+    }
+    stages{
+        stage("Verificación"){
+            steps{
+                sh '''
+                  node --version
+                  npm version
+                '''
+            }
+        }
+        stage("construir"){
+            steps{
+                dir ('./03-docker/solution'){
+                    sh '''
+                        npm install
+                        npm run build 
+                    '''
+                }
+            }    
+        }
+        stage('Unit test'){
+            steps{
+                dir('./03-docker/solution'){                
+                    sh 'npm test'
+                }
+            } 
+            
+        }
+    }
+}
