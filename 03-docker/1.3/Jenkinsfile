@@ -6,6 +6,7 @@ pipeline {
         stage('Build') {
             steps {
                 script {
+                    sh 'pwd' // Imprime el directorio de trabajo
                     image = docker.build("molmo/jenkins-pipeline-demos:0.0.1", "--pull -f ../solution/Dockerfile ../solution")
                 }
             }          
