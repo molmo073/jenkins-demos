@@ -12,7 +12,6 @@ pipeline {
                     image = docker.build("molmo/jenkins-pipeline-demos:0.0.1", "--pull -f 03-docker/solution/Dockerfile 03-docker/solution")
                 }
             }          
-
         }
         stage('Push') {
             steps {
