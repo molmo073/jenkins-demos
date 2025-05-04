@@ -9,7 +9,7 @@ pipeline {
                     sh 'pwd' // Imprime el directorio de trabajo
                     sh 'ls -la'     // Para ver el contenido del directorio actual (/var/jenkins_home/workspace/03-docker-1.3)
                     sh 'ls -la 03-docker' // Ver el contenido DE LA CARPETA 03-docker dentro del workspace
-                    image = docker.build("molmo/jenkins-pipeline-demos:0.0.1", "--pull -f 03-docker/solution/Dockerfile 03-docker/solution")
+                    image = docker.build("molmo073/jenkins-pipeline-demos:0.0.1", "--pull -f 03-docker/solution/Dockerfile 03-docker/solution")
                 }
             }          
         }
